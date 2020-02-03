@@ -7,7 +7,6 @@ fetch(url)
         return response.json();
     })
     .then((myJson) => {
-        console.log(myJson);
         let objects = [];
 
         // iterate over the objects to get all the objectNumbers
@@ -29,7 +28,6 @@ fetch(url)
                     return response2.json();
                 })
                 .then((myJson2) => {
-                    console.log(myJson2);
                     let object = myJson2.artObject;
                     let objectColors = [];
 
