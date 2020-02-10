@@ -5,120 +5,124 @@ const main = document.querySelector('main'),
     maker = 'Aelbert+Cuyp',
     url = `${endpoint}?key=${key}&involvedMaker=${maker}`;
 
-// const render = data => {
-//     data.forEach((object, i) => {
-//         const html = `
-//             <!--HTML code here-->
-//         `;
-//         main.insertAdjacentHTML('beforeend', html);
-//     });
-// };
+function getObjectNumbers(data) {
+    let paintings = [];
 
-// get all the objects
-fetch(url)
-    .then((response) => {
-        return response.json();
-    })
-    .then((jsonData) => {
-        let objects = [];
-        let data = jsonData.artObjects;
+    // iterate over the objects to get all the objectNumbers
+    for(let i = 0; i < data.length; i++){
+        let painting = data[i];
+        // store all the objectNumbers in an array
+        paintings.push(painting.objectNumber);
+    }
 
-        // iterate over the objects to get all the objectNumbers
-        for(let i = 0; i < data.length; i++){
-            let object = data[i];
-            // store all the objectNumbers in an array
-            objects.push(object.objectNumber);
-        }
+    return paintings;
+}
 
-        // iterate over the objects to get the objectNumber to add to the url
-        for(let i = 0; i < data.length; i++){
-            let objectNumber = objects[i];
-            const urlObjects = `${endpoint}/${objectNumber}?key=${key}`;
+function getColors(data) {
+    let paintingColors = [];
 
-            // get object colors
-            fetch(urlObjects)
-                .then((responseObjects) => {
-                    return responseObjects.json();
-                })
-                .then((jsonDataObjects) => {
-                    let object = jsonDataObjects.artObject;
-                    let objectColors = [];
+    for(let i = 0; i < data.colors.length; i++) {
+        let paintingColor = data.colors[i];
 
-                    // iterate over the colors to get all the colors and the name of an object
-                    if(object.colors.length > 0) {
-                        for(let i = 0; i < object.colors.length; i++) {
-                            let objectColor = object.colors[i];
+        // store all the hex code of the colors in an array
+        paintingColors += paintingColor.hex;
+    }
+    // convert string to array
+    paintingColors = paintingColors.split(' ');
+    return paintingColors;
+}
 
-                            // store all the hex code of the colors in an array
-                            objectColors += objectColor.hex;
-                        }
-                        // convert string to array
-                        objectColors = objectColors.split(' ');
+const renderPaintings = data => {
+    let painting = data;
 
-                        const html = `
-                            <div class="object">
-                                <img src="${object.webImage.url}">
-                                <div class="title">
-                                    <h3 class="title-name">${object.title}</h3>
-                                    <span class="title-objectnumber">${objectNumber}</span>
-                                </div>
-                                <div class="presenting-date">
-                                    <span>Year the painting was presented: <span class="presenting-date">${object.dating.presentingDate}</span></span>
-                                </div>
-                                <div class="colors">
-                                    <span>Colors:</span>
-                                     <ul>
-                                        <!--
-                                            loop through the colors in the array and place them in a li tag
-                                            used .join('') on the map to remove apostrophe
-                                        -->
-                                        ${objectColors.map(hex =>{ 
-                                            return `<li>${hex}</li>`
-                                        }).join('')}
-                                     </ul>
-                                </div>
-                            </div>
-                        `;
+    // iterate over the colors to get all the colors and the name of an object
+    if(painting.colors.length > 0) {
+        // getColors(data);
 
-                        main.insertAdjacentHTML('beforeend', html);
+        const html = `
+            <div class="object">
+                <img src="${painting.webImage.url}">
+                <div class="title">
+                    <h3 class="title-name">${painting.title}</h3>
+                    <span class="title-objectnumber">${painting.objectNumber}</span>
+                </div>
+                <div class="presenting-date">
+                    <span>Year the painting was presented: <span class="presenting-date">${painting.dating.presentingDate}</span></span>
+                </div>
+                <div class="colors"> 
+                    <span>Colors:</span>
+                     <ul>
+                        <!--
+                            loop through the colors in the array and place them in a li tag
+                            used .join('') on the map to remove apostrophe
+                        -->
+                        ${getColors(data).map(hex =>{
+                            return `<li>${hex}</li>`
+                        }).join('')}
+                     </ul>
+                </div>
+            </div>
+        `;
 
-                        // console.log("img: "+ object.webImage.url +
-                        //     "\nName: " + object.title +
-                        //     "\nYear it was presented: " + object.dating.presentingDate +
-                        //     "\nColors: " + JSON.stringify(objectColors) +
-                        //     "\nObjectNr: " + object.objectNumber);
-                    } else {
-                        const html = `
-                            <div class="object">
-                                <img src="${object.webImage.url}">
-                                <div class="title">
-                                    <h3 class="title-name">${object.title}</h3>
-                                    <span class="title-objectnumber">${objectNumber}</span>
-                                </div>
-                                <div class="presenting-date">
-                                    <span>Year the painting was presented: <span class="presenting-date">${object.dating.presentingDate}</span></span>
-                                </div>
-                                <div class="colors">
-                                    <span>Colors: unknown</span>
-                                </div>
-                            </div>
-                        `;
+        main.insertAdjacentHTML('beforeend', html);
 
-                        main.insertAdjacentHTML('beforeend', html);
+    } else {
+        const html = `
+            <div class="object">
+                <img src="${painting.webImage.url}">
+                <div class="title">
+                    <h3 class="title-name">${painting.title}</h3>
+                    <span class="title-objectnumber">${painting.objectNumber}</span>
+                </div>
+                <div class="presenting-date">
+                    <span>Year the painting was presented: <span class="presenting-date">${painting.dating.presentingDate}</span></span>
+                </div>
+                <div class="colors">
+                    <span>Colors: not defined</span>
+                </div>
+            </div>
+        `;
 
-                        // console.log("img: "+ object.webImage.url +
-                        //     "\nName: " + object.title +
-                        //     "\nYear it was presented: " + object.dating.presentingDate +
-                        //     "\nColors: unknown" +
-                        //     "\nObjectNr: " + object.objectNumber);
-                    }
-                })
-                .catch((error) => {
-                    console.log('Something went wrong', error);
-                })
-        }
+        main.insertAdjacentHTML('beforeend', html);
+    }
+};
 
-    })
-    .catch((error) => {
-        console.error('Error: ', error);
-    });
+function getPaintingDetailsData(jsonData){
+    let data = jsonData.artObjects;
+
+    let paintings = getObjectNumbers(data);
+
+    // iterate over the objects to get the objectNumber to add to the url
+    for(let i = 0; i < data.length; i++){
+        let paintingObjectNumber = paintings[i];
+        const urlPainting = `${endpoint}/${paintingObjectNumber}?key=${key}`;
+
+        // get object colors
+        fetch(urlPainting)
+            .then((responsePaintings) => {
+                return responsePaintings.json();
+            })
+            .then((jsonDataPaintings) => {
+                renderPaintings(jsonDataPaintings.artObject);
+            })
+            .catch((error) => {
+                console.log('Something went wrong', error);
+            })
+    }
+}
+
+function getPaintingsData() {
+    // get all the objects
+    fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((jsonData) => {
+            getPaintingDetailsData(jsonData);
+        })
+        .catch((error) => {
+            console.error('Error: ', error);
+        });
+}
+
+getPaintingsData();
