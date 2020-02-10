@@ -1,11 +1,10 @@
-# Rijksmuseum paintings - Marjolein Aardewijn
+# Rijksmuseum paintings
 
-<image>
+/*image*/
 
 ## 1. Live Demo
 
 The live demo of the app can be found here:
-
 [Live Demo Link](https://marjoleinaardewijn.github.io/web-app-from-scratch-1920/)
 
 ## 2. Intro
@@ -32,3 +31,11 @@ The API that is used for this app is the [Rijksmuseum API](https://data.rijksmus
 ## 6. Design Patterns and Best Practices
 
 ## 7. Feature Wishlist / Backlog
+
+- [x] get the name and an image of all the paintings by one specific painter.
+- [x] get details of the paintings.
+- [ ] search painting from a specific painter.
+- [ ] route to details page.
+- [ ] transform hex values to real colors.
+- [ ] arrows for scrolling with a nice fade on both sides.
+- [ ] OOP instead of functional
