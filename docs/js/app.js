@@ -185,6 +185,57 @@ function updateUI(route){
     activeSection.classList.add('active');
 }
 
+/**
+ * The code for this function is inspired on the code from tutorialrepublic.com.
+ * Link: https://www.tutorialrepublic.com/faq/how-to-get-the-value-of-text-input-field-using-javascript.php
+ *
+ * For the regex I used the answers on stackoverflow as inspireation.
+ * link: https://stackoverflow.com/questions/441018/replacing-spaces-with-underscores-in-javascript
+ *
+ * Function to get the user input.
+ */
+function getUserInput() {
+    // get user input
+    let inputVal = document.getElementById("userInputMaker").value;
+
+    // remove all special characters in string
+    let temp = inputVal.replace(/[^a-zA-Z ]/g, "");
+    // remove all special characters and whitespaces around the string
+    let artist = temp.trim();
+    // replace all spaces with '+' in string and return the value
+    return artist.replace(/[\s]/g, "+");
+}
+
+/**
+ * Function to search for other painters
+ */
+function searchForPaintings() {
+    if(getUserInput()){
+        // todo: remove all content in div.objects
+        clearBox('objects');
+        // todo: reset fetch
+        // todo: fetch again
+    } else {
+        const artist = 'Aelbert+Cuyp';
+        getPaintingsData(artist);
+    }
+}
+
+/**
+ * For this function I used the code from geeksforgeeks.org.
+ * link: https://www.geeksforgeeks.org/how-to-clear-the-content-of-a-div-using-javascript/
+ *
+ * Function to remove all the content inside a div.
+ * @param elementID: the ID of the div that you want to clear.
+ */
+function clearBox(elementID) {
+    let div = document.getElementById(elementID);
+
+    while(div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
+}
+
 function init(){
     // const artist = 'Rembrandt+van+Rijn';
     const artist = 'Aelbert+Cuyp';
