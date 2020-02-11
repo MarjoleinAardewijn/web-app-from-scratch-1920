@@ -60,3 +60,11 @@ main {
 ul {
     list-style: none;
 }
+
+section {
+    display: none;
+}
+
+section.active{
+    display: block;
+}

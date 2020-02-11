@@ -1,4 +1,6 @@
-const main = document.querySelector('.objects'),
+const objects = document.querySelector('.objects'),
+    sections = document.querySelectorAll('section'),
+    main = document.querySelector('main'),
     endpoint = 'https://www.rijksmuseum.nl/api/nl/collection',
     apiKey = 'n0Iu86hl';
 
@@ -34,53 +36,12 @@ function renderNoDataFound() {
         <div><span>Oeps! Het ziet er naar uit dat deze schilder niet bestaat. Check voor de zekerheid of je de naam goed gesachreven hebt.</span></div>
     `;
 
-    main.insertAdjacentHTML('beforeend', html);
+    objects.insertAdjacentHTML('beforeend', html);
 }
-
-const renderPaintings = data => {
-    const html = `
-        <div class="object">
-            <img src="${data.webImage.url}">
-            <div class="title">
-                <h3 class="title-name">${data.title}</h3>
-            </div>
-        </div>
-    `;
-
-    main.insertAdjacentHTML('beforeend', html);
-};
 
 const renderDetailsWithColors = data => {
     const html = `
-        <div class="object">
-            <img src="${data.webImage.url}">
-            <div class="title">
-                <h3 class="title-name">${data.title}</h3>
-                <span class="title-objectnumber">${data.objectNumber}</span>
-            </div>
-            <div class="presenting-date">
-                <span>Year the painting was presented: <span class="presenting-date">${data.dating.presentingDate}</span></span>
-            </div>
-            <div class="colors"> 
-                <span>Colors:</span>
-                 <ul>
-                    <!--
-                        loop through the colors in the array and place them in a li tag
-                        used .join('') on the map to remove apostrophe
-                    -->
-                    ${getColors(data).map(hex =>{
-                        return `<li>${hex}</li>`
-                    }).join('')}
-                 </ul>
-            </div>
-        </div>
-    `;
-
-    main.insertAdjacentHTML('beforeend', html);
-};
-
-const renderDetailsNoColorsDefined = data => {
-    const html = `
+        <section data-route="${data.objectNumber}">
             <div class="object">
                 <img src="${data.webImage.url}">
                 <div class="title">
@@ -90,13 +51,45 @@ const renderDetailsNoColorsDefined = data => {
                 <div class="presenting-date">
                     <span>Year the painting was presented: <span class="presenting-date">${data.dating.presentingDate}</span></span>
                 </div>
-                <div class="colors">
-                    <span>Colors: not defined</span>
+                <div class="colors"> 
+                    <span>Colors:</span>
+                     <ul>
+                        <!--
+                            loop through the colors in the array and place them in a li tag
+                            used .join('') on the map to remove apostrophe
+                        -->
+                        ${getColors(data).map(hex =>{
+                            return `<li>${hex}</li>`
+                        }).join('')}
+                     </ul>
                 </div>
             </div>
+        </section>
+    `;
+
+    main.insertAdjacentHTML('afterend', html);
+};
+
+const renderDetailsNoColorsDefined = data => {
+    const html = `
+            <section data-route="${data.objectNumber}">
+                <div class="object">
+                    <img src="${data.webImage.url}">
+                    <div class="title">
+                        <h3 class="title-name">${data.title}</h3>
+                        <span class="title-objectnumber">${data.objectNumber}</span>
+                    </div>
+                    <div class="presenting-date">
+                        <span>Year the painting was presented: <span class="presenting-date">${data.dating.presentingDate}</span></span>
+                    </div>
+                    <div class="colors">
+                        <span>Colors: not defined</span>
+                    </div>
+                </div>
+            </section>
         `;
 
-    main.insertAdjacentHTML('beforeend', html);
+    main.insertAdjacentHTML('afterend', html);
 };
 
 const renderDetails = data => {
@@ -106,6 +99,20 @@ const renderDetails = data => {
     } else {
         renderDetailsNoColorsDefined(data);
     }
+};
+
+const renderPaintings = data => {
+    const html = `
+        <div class="object">
+            <img src="${data.webImage.url}">
+            <div class="title">
+                <h3 class="title-name"><a href="#${data.objectNumber}">${data.title}</a></h3>
+                <p>${data.objectNumber}</p>
+            </div>
+        </div>
+    `;
+
+    objects.insertAdjacentHTML('beforeend', html);
 };
 
 function getPaintingDetailsData(jsonData){
@@ -125,6 +132,7 @@ function getPaintingDetailsData(jsonData){
             })
             .then((jsonDataDetails) => {
                 renderPaintings(jsonDataDetails.artObject);
+                renderDetails(jsonDataDetails.artObject);
             })
             .catch((error) => {
                 console.log('Something went wrong', error);
@@ -132,8 +140,12 @@ function getPaintingDetailsData(jsonData){
     }
 }
 
-function getPaintingsData(maker) {
-    const painter = maker,
+/**
+ * Function to fetch all the paintings from a specific painter
+ * @param artist: painter where you want to see some paintings from.
+ */
+function getPaintingsData(artist) {
+    const painter = artist,
         url = `${endpoint}?key=${apiKey}&involvedMaker=${painter}`;
 
     // get all the objects
@@ -154,34 +166,30 @@ function getPaintingsData(maker) {
         });
 }
 
-function getUserInput() {
-    // get user input
-    let inputVal = document.getElementById("userInputMaker").value;
-
-    // remove all special characters in string
-    let temp = inputVal.replace(/[^a-zA-Z ]/g, "");
-    // remove all special characters and whitespaces around the string
-    let maker = temp.trim();
-    // replace all spaces with '+' in string and return the value
-    return maker.replace(/[\s]/g, "+");
-}
-
-function searchForPaintings() {
-    if(getUserInput()){
-        // todo: remove all content in div.objects
-        // todo: reset fetch
-        // todo: fetch again
-    } else {
-        const maker = 'Aelbert+Cuyp';
-        getPaintingsData(maker);
+/**
+ * based on the code from Joost about routie.js
+ * link: https://codepen.io/joostf/pen/jOPPMLK
+ */
+routie({
+    ':id': id => {
+        updateUI(id);
     }
+});
+
+function updateUI(route){
+    if(document.querySelector('section[data-route].active')){
+        document.querySelector('section[data-route].active').classList.remove('active');
+    }
+    let activeSection = document.querySelector(`[data-route=${route}]`);
+    // console.log(activeSection);
+    activeSection.classList.add('active');
 }
 
 function init(){
-    const maker = 'Rembrandt+van+Rijn';
-    // const maker = 'Aelbert+Cuyp';
+    // const artist = 'Rembrandt+van+Rijn';
+    const artist = 'Aelbert+Cuyp';
 
-    return getPaintingsData(maker);
+    return getPaintingsData(artist);
 }
 
 init();
