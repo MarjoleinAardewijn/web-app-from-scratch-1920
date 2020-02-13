@@ -57,11 +57,11 @@ The API that is used for this app is the [Rijksmuseum API](https://data.rijksmus
 ## How it works
 ### Actor diagram
 
-![Actor Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/tree/master/images/actor-diagram-WAFS-1920 "Actor Diagram")
+![Actor Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/actor-diagram-WAFS-1920.png "Actor Diagram")
 
 ### Interaction diagram
 
-![Interaction Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/tree/master/images/interaction-diagram-WAFS-1920 "Interaction Diagram")
+![Interaction Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/interaction-diagram-WAFS-1920.png "Interaction Diagram")
 
 ## Feature Wishlist / Backlog
 
