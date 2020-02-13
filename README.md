@@ -1,6 +1,6 @@
 # Rijksmuseum paintings
 
-![App][image]
+![App](image)
 
 ## Table of Contents
 
