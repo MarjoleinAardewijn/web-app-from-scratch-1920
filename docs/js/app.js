@@ -1,8 +1,66 @@
-const objects = document.querySelector('.objects'),
-    sections = document.querySelectorAll('section'),
-    main = document.querySelector('main'),
-    endpoint = 'https://www.rijksmuseum.nl/api/nl/collection',
+/** API -> todo: move to separate module*/
+
+const endpoint = 'https://www.rijksmuseum.nl/api/nl/collection',
     apiKey = 'n0Iu86hl';
+
+/**
+ * Function to fetch all the paintings from a specific painter
+ *
+ * @param artist: painter where you want to see some paintings from.
+ */
+function getPaintingsData(artist) {
+    const painter = artist,
+        url = `${endpoint}?key=${apiKey}&involvedMaker=${painter}`;
+
+    // get all the objects
+    fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((jsonData) => {
+            // check if there are any results
+            if(jsonData.count !== 0) {
+                getPaintingDetailsData(jsonData);
+            } else {
+                renderNoDataFound();
+            }
+        })
+        .catch((error) => {
+            console.error('Error: ', error);
+        });
+}
+
+/** API Details -> todo: move to separate module*/
+
+/**
+ * Function to fetch the details
+ *
+ * @param jsonData
+ */
+function getPaintingDetailsData(jsonData){
+    let data = jsonData.artObjects;
+
+    let paintings = getObjectNumbers(data);
+
+    // iterate over the objects to get the objectNumber to add to the url
+    for(let i = 0; i < data.length; i++){
+        let paintingObjectNumber = paintings[i];
+        const url = `${endpoint}/${paintingObjectNumber}?key=${apiKey}`;
+
+        // get object colors
+        fetch(url)
+            .then((responseDetails) => {
+                return responseDetails.json();
+            })
+            .then((jsonDataDetails) => {
+                renderPaintings(jsonDataDetails.artObject);
+                renderDetails(jsonDataDetails.artObject);
+            })
+            .catch((error) => {
+                console.log('Something went wrong', error);
+            })
+    }
+}
 
 function getObjectNumbers(data) {
     let paintings = [];
@@ -31,13 +89,26 @@ function getColors(data) {
     return paintingColors;
 }
 
-function renderNoDataFound() {
-    const html = `
-        <div><span>Oeps! Het ziet er naar uit dat deze schilder niet bestaat. Check voor de zekerheid of je de naam goed gesachreven hebt.</span></div>
-    `;
+/** Renderer -> todo: move to separate module*/
 
-    objects.insertAdjacentHTML('beforeend', html);
-}
+const objects = document.querySelector('.objects'),
+    main = document.querySelector('main');
+
+/**
+ * Details html renderer's
+ *
+ * Switch between html layouts depending if there are colors or not.
+ *
+ * @param data
+ */
+const renderDetails = data => {
+    // iterate over the colors to get all the colors and the name of an object
+    if(data.colors.length > 0){
+        renderDetailsWithColors(data);
+    } else {
+        renderDetailsNoColorsDefined(data);
+    }
+};
 
 const renderDetailsWithColors = data => {
     const html = `
@@ -92,15 +163,11 @@ const renderDetailsNoColorsDefined = data => {
     main.insertAdjacentHTML('afterend', html);
 };
 
-const renderDetails = data => {
-    // iterate over the colors to get all the colors and the name of an object
-    if(data.colors.length > 0){
-        renderDetailsWithColors(data);
-    } else {
-        renderDetailsNoColorsDefined(data);
-    }
-};
-
+/**
+ * Home page html
+ *
+ * @param data
+ */
 const renderPaintings = data => {
     const html = `
         <div class="object">
@@ -115,67 +182,32 @@ const renderPaintings = data => {
     objects.insertAdjacentHTML('beforeend', html);
 };
 
-function getPaintingDetailsData(jsonData){
-    let data = jsonData.artObjects;
+/**
+ * No data found html renderer
+ */
 
-    let paintings = getObjectNumbers(data);
+function renderNoDataFound() {
+    const html = `
+        <div><span>Oeps! Het ziet er naar uit dat deze schilder niet bestaat. Check voor de zekerheid of je de naam goed gesachreven hebt.</span></div>
+    `;
 
-    // iterate over the objects to get the objectNumber to add to the url
-    for(let i = 0; i < data.length; i++){
-        let paintingObjectNumber = paintings[i];
-        const url = `${endpoint}/${paintingObjectNumber}?key=${apiKey}`;
-
-        // get object colors
-        fetch(url)
-            .then((responseDetails) => {
-                return responseDetails.json();
-            })
-            .then((jsonDataDetails) => {
-                renderPaintings(jsonDataDetails.artObject);
-                renderDetails(jsonDataDetails.artObject);
-            })
-            .catch((error) => {
-                console.log('Something went wrong', error);
-            })
-    }
+    objects.insertAdjacentHTML('beforeend', html);
 }
 
-/**
- * Function to fetch all the paintings from a specific painter
- * @param artist: painter where you want to see some paintings from.
- */
-function getPaintingsData(artist) {
-    const painter = artist,
-        url = `${endpoint}?key=${apiKey}&involvedMaker=${painter}`;
+/** Router -> todo: move to separate module*/
 
-    // get all the objects
-    fetch(url)
-        .then((response) => {
-            return response.json();
-        })
-        .then((jsonData) => {
-            // check if there are any results
-            if(jsonData.count !== 0) {
-                getPaintingDetailsData(jsonData);
-            } else {
-                renderNoDataFound();
-            }
-        })
-        .catch((error) => {
-            console.error('Error: ', error);
-        });
-}
-
-/**
- * based on the code from Joost about routie.js
- * link: https://codepen.io/joostf/pen/jOPPMLK
- */
 routie({
-    ':id': id => {
-        updateUI(id);
+    ':id': objectNumber => {
+        updateUI(objectNumber);
     }
 });
 
+/**
+ * Function to add and remove active class depending if the data in the data-route attr matches the objectNumber
+ * in routie function.
+ *
+ * @param route
+ */
 function updateUI(route){
     if(document.querySelector('section[data-route].active')){
         document.querySelector('section[data-route].active').classList.remove('active');
@@ -185,13 +217,9 @@ function updateUI(route){
     activeSection.classList.add('active');
 }
 
+/** Search -> todo: move to separate module*/
+
 /**
- * The code for this function is inspired on the code from tutorialrepublic.com.
- * Link: https://www.tutorialrepublic.com/faq/how-to-get-the-value-of-text-input-field-using-javascript.php
- *
- * For the regex I used the answers on stackoverflow as inspireation.
- * link: https://stackoverflow.com/questions/441018/replacing-spaces-with-underscores-in-javascript
- *
  * Function to get the user input.
  */
 function getUserInput() {
@@ -222,10 +250,8 @@ function searchForPaintings() {
 }
 
 /**
- * For this function I used the code from geeksforgeeks.org.
- * link: https://www.geeksforgeeks.org/how-to-clear-the-content-of-a-div-using-javascript/
- *
  * Function to remove all the content inside a div.
+ *
  * @param elementID: the ID of the div that you want to clear.
  */
 function clearBox(elementID) {
@@ -235,6 +261,8 @@ function clearBox(elementID) {
         div.removeChild(div.firstChild);
     }
 }
+
+/** App -> todo: include modules that are necessary */
 
 function init(){
     // const artist = 'Rembrandt+van+Rijn';
