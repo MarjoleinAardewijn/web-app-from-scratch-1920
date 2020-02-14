@@ -130,7 +130,7 @@ const renderDetailsWithColors = data => {
                             used .join('') on the map to remove apostrophe
                         -->
                         ${getColors(data).map(hex =>{
-                            return `<li>${hex}</li>`
+                            return `<li style="background-color: ${hex}">${hex}</li>`
                         }).join('')}
                      </ul>
                 </div>
