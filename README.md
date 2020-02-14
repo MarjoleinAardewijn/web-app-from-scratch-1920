@@ -54,6 +54,12 @@ After cloning the repository load the `index.html` file in your localhost.
 
 The API that is used for this app is the [Rijksmuseum API](https://data.rijksmuseum.nl/object-metadata/api/).
 
+For getting the paintings from an artist I used the following API endpoint:
+
+> https://www.rijksmuseum.nl/api/nl/collection?key=[api-key]&involvedMaker=[artist]
+
+This will be returning the following data:
+
 <details>
  <summary>All data from a specific artist</summary>
 
@@ -98,6 +104,12 @@ The API that is used for this app is the [Rijksmuseum API](https://data.rijksmus
 }
 ```
 </details>
+
+For getting the details from a painting I used the following API endpoint:
+
+> https://www.rijksmuseum.nl/api/nl/collection/[objectNumber]?key=[api-key]
+
+This will be returning the following data:
 
 <details>
  <summary>Painting specific data</summary>
