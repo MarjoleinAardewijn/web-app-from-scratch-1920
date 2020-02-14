@@ -1,20 +1,20 @@
 # Rijksmuseum paintings
 
-![App][image]
+![App](image)
 
 ## Table of Contents
 
-* [To Do](#to-do-)
-* [Live Demo](#live-demo-)
-* [Description](#description-)
-* [Usage](#usage)
-* [API](#api-)
-* [How It Works](#how-it-works)
-  * [Actor Diagram](#actor-diagram)
-  * [Interaction Diagram](#interaction-diagram)
-* [Sources](#sources)
-* [Credits](#credits)
-* [Licence](#licence)
+* [To Do](#t=To-do-)
+* [Live Demo](#Live-demo-)
+* [Description](#Description-)
+* [Usage](#Usage)
+* [API](#Api-)
+* [How It Works](#How-it-works)
+  * [Actor Diagram](#Actor-diagram)
+  * [Interaction Diagram](#Interaction-diagram)
+* [Sources](#Sources)
+* [Credits](#Credits)
+* [Licence](#Licence)
 
 ## To do
 
@@ -283,7 +283,7 @@ This will be returning the following data:
 
 ### Interaction diagram
 
-![Interaction Diagram][https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/tree/master/images/interaction-diagram-WAFS-1920 "Interaction Diagram"]
+![Interaction Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/interaction-diagram-WAFS-1920.png "Interaction Diagram")
 
 ## Feature Wishlist / Backlog
 
