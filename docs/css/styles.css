@@ -57,14 +57,28 @@ main {
     max-width: 40vw;
 }
 
-ul {
-    list-style: none;
-}
-
 section {
     display: none;
 }
 
 section.active{
     display: block;
+}
+
+.colors > ul {
+    display: flex;
+    list-style: none;
+}
+
+.colors > ul > .hex-color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 4px;
+
+    margin: 0.5rem;
 }
