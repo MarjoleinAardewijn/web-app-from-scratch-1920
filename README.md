@@ -279,7 +279,7 @@ This will be returning the following data:
 ## How it works
 ### Actor diagram
 
-![Actor Diagram][https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/tree/master/images/actor-diagram-WAFS-1920 "Actor Diagram"]
+![Actor Diagram][https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/tree/master/images/actor-diagram-WAFS-1920-v2 "Actor Diagram"]
 
 ### Interaction diagram
 
