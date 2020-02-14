@@ -21,9 +21,9 @@
 - [x] get the name and an image of all the paintings by one specific artist.
 - [x] get details of the paintings.
 - [x] route to details page.
+- [x] transform hex values to real colors.
 - [ ] refactor code to modules.
 - [ ] search painting from a specific artist.
-- [ ] transform hex values to real colors.
 - [ ] arrows for scrolling with a nice fade on both sides.
 - [ ] styling.
 
@@ -279,7 +279,7 @@ This will be returning the following data:
 ## How it works
 ### Actor diagram
 
-![Actor Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/actor-diagram-WAFS-1920.png "Actor Diagram")
+![Actor Diagram][https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/tree/master/images/actor-diagram-WAFS-1920-v2 "Actor Diagram"]
 
 ### Interaction diagram
 
