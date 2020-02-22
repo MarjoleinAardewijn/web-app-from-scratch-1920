@@ -1,6 +1,6 @@
 # Rijksmuseum paintings
 
-![App](image)
+![App](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/rijksmuseum-schilders-app.png "Rijksmuseum Schilders App")
 
 ## Table of Contents
 
