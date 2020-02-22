@@ -159,7 +159,7 @@ section > .object {
     margin-top: 1.5em;
 }
 
-.presenting-date span {
+.presenting-date > span {
     display: flex;
     flex-direction: column;
     font-weight: 700;
