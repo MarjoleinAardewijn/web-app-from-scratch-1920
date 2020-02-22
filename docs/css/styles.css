@@ -79,6 +79,8 @@ input {
 .objects {
     display: flex;
     overflow-x: scroll;
+
+    margin-top: 3em;
 }
 
 .link {
