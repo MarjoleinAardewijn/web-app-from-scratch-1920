@@ -114,13 +114,12 @@ const renderDetailsWithColors = data => {
     const html = `
         <section data-route="${data.objectNumber}">
             <div class="object">
-                <img src="${data.webImage.url}">
                 <div class="title">
                     <h3 class="title-name">${data.title}</h3>
                     <span class="title-objectnumber">${data.objectNumber}</span>
                 </div>
                 <div class="presenting-date">
-                    <span>Year the painting was presented: <span class="presenting-date">${data.dating.presentingDate}</span></span>
+                    <span>Year the painting was presented: <span class="date">${data.dating.presentingDate}</span></span>
                 </div>
                 <div class="colors"> 
                     <span>Colors:</span>
@@ -130,7 +129,7 @@ const renderDetailsWithColors = data => {
                             used .join('') on the map to remove apostrophe
                         -->
                         ${getColors(data).map(hex =>{
-                            return `<li style="background-color: ${hex}">${hex}</li>`
+                            return `<li class="hex-color" style="background-color: ${hex}">${hex}</li>`
                         }).join('')}
                      </ul>
                 </div>
@@ -145,16 +144,15 @@ const renderDetailsNoColorsDefined = data => {
     const html = `
             <section data-route="${data.objectNumber}">
                 <div class="object">
-                    <img src="${data.webImage.url}">
                     <div class="title">
                         <h3 class="title-name">${data.title}</h3>
                         <span class="title-objectnumber">${data.objectNumber}</span>
                     </div>
                     <div class="presenting-date">
-                        <span>Year the painting was presented: <span class="presenting-date">${data.dating.presentingDate}</span></span>
+                        <span>Year the painting was presented: <span class="date">${data.dating.presentingDate}</span></span>
                     </div>
                     <div class="colors">
-                        <span>Colors: not defined</span>
+                        <span>Colors: </span><span class="not-defined">not defined</span>
                     </div>
                 </div>
             </section>
@@ -170,13 +168,15 @@ const renderDetailsNoColorsDefined = data => {
  */
 const renderPaintings = data => {
     const html = `
-        <div class="object">
-            <img src="${data.webImage.url}">
-            <div class="title">
-                <h3 class="title-name"><a href="#${data.objectNumber}">${data.title}</a></h3>
-                <p>${data.objectNumber}</p>
+        <a href="#${data.objectNumber}" class="link">
+            <div class="object">
+                <img src="${data.webImage.url}">
+                <div class="title">
+                    <h3 class="title-name">${data.title}</h3>
+    <!--                <p>${data.objectNumber}</p>-->
+                </div>
             </div>
-        </div>
+        </a>
     `;
 
     objects.insertAdjacentHTML('beforeend', html);
