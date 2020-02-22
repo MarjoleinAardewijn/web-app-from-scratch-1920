@@ -22,10 +22,12 @@
 - [x] get details of the paintings.
 - [x] route to details page.
 - [x] transform hex values to real colors.
-- [ ] refactor code to modules.
+- [x] refactor code to modules.
+- [ ] add handle to router module.
+- [ ] refactor fetch to async/await.
 - [ ] search painting from a specific artist.
 - [ ] arrows for scrolling with a nice fade on both sides.
-- [ ] styling.
+- [x] styling.
 
 ## Live Demo
 
