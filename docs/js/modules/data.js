@@ -1,17 +1,28 @@
 export let data = {
-    // getObjectNumbers: function (data) {
-    // forEach:
-    //     // let result = [];
-    //     //
-    //     // data.forEach(item => {
-    //     //     result.push(item.objectNumber);
-    //     // });
-    //     //
-    //     // return result;
-    //
-    // map:
-    //     return data.map(object => {
-    //         return object.objectNumber;
-    //     });
-    // }
+    get: function (key) {
+        return localStorage.getItem(key);
+    },
+
+    set: function (key, data) {
+        localStorage.setItem(key, JSON.stringify(data));
+    },
+
+    parse: function (object) {
+        return JSON.parse(object);
+    },
+
+    filter: function (data) {
+        let filter = [];
+
+        // filter the data and push to array.
+        filter.push({
+            id: data.objectNumber,
+            title: data.title,
+            imgUrl: data.webImage.url,
+            colors: data.colors,
+            presentingDate: data.dating.presentingDate
+        });
+
+        return filter;
+    }
 };
