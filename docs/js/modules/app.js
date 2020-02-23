@@ -7,6 +7,6 @@ export let app = {
 
         // const artist = 'Rembrandt+van+Rijn';
         const artist = 'Aelbert+Cuyp';
-        return api.overview(artist);
+        return api.getData(artist);
     }
 };
