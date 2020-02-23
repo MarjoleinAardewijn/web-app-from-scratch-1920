@@ -1,4 +1,5 @@
 import {render} from "./render.js";
+import {search} from "./search.js";
 
 const endpoint = 'https://www.rijksmuseum.nl/api/nl/collection',
     apiKey = 'n0Iu86hl';
@@ -16,7 +17,7 @@ export let api = {
         try {
             const response = await fetch(urlArtist);
             const jsonData = await response.json();
-            if (jsonData.count !== 0) {
+            if (jsonData.artObjects.length !== 0) {
                 let objects = jsonData.artObjects;
 
                 /**
@@ -38,6 +39,7 @@ export let api = {
                     }
                 });
             } else {
+                search.remove('objects');
                 render.noDataFound();
             }
         } catch (err) {

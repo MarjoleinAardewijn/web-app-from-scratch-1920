@@ -36,7 +36,7 @@ export let search = {
      *
      * @param elementId: the ID of the div that you want to clear.
      */
-    clear: function (elementId) {
+    remove: function (elementId) {
         let div = document.getElementById(elementId);
 
         while(div.firstChild) {
