@@ -39,25 +39,26 @@ export let api = {
      */
     details: function (data) {
         let objects = data.artObjects;
-        let paintings = dataModule.getObjectNumbers(objects);
 
-        // iterate over the objects to get the objectNumber to add to the url
-        for(let i = 0; i < objects.length; i++){
-            let paintingObjectNumber = paintings[i];
-            const url = `${endpoint}/${paintingObjectNumber}?key=${apiKey}`;
+        let paintings = objects.map(object => {
+            return object.objectNumber;
+        });
 
-            // get object colors
-            fetch(url)
-                .then((response) => {
-                    return response.json();
-                })
-                .then((jsonData) => {
-                    render.overview(jsonData.artObject);
-                    render.details(jsonData.artObject);
-                })
-                .catch((error) => {
-                    console.log('Something went wrong', error);
-                })
-        }
+        paintings.forEach(object => {
+            const url = `${endpoint}/${object}?key=${apiKey}`;
+
+                // get object colors
+                fetch(url)
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((jsonData) => {
+                        render.overview(jsonData.artObject);
+                        render.details(jsonData.artObject);
+                    })
+                    .catch((error) => {
+                        console.log('Something went wrong', error);
+                    })
+        })
     }
 };

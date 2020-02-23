@@ -16,7 +16,6 @@ export let render = {
                     <img src="${data.webImage.url}">
                     <div class="title">
                         <h3 class="title-name">${data.title}</h3>
-        <!--                <p>${data.objectNumber}</p>-->
                     </div>
                 </div>
             </a>
@@ -62,8 +61,8 @@ export let render = {
                             loop through the colors in the array and place them in a li tag
                             used .join('') on the map to remove apostrophe
                         -->
-                        ${dataModule.getColors(data).map(hex => {
-                            return `<li class="hex-color" style="background-color: ${hex}">${hex}</li>`
+                        ${data.colors.map(colors => {
+                            return `<li class="hex-color" style="background-color: ${colors.hex}">${colors.hex}</li>`
                         }).join('')}
                      </ul>
                 </div>
