@@ -214,3 +214,11 @@ section > .object {
 .colors ul .hex-color:last-child {
     margin-right: 0;
 }
+
+.no-data {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+
+    color: var(--light);
+}

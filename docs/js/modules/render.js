@@ -1,5 +1,3 @@
-import {data as dataModule} from "./data.js";
-
 const objects = document.querySelector('.objects'),
     main = document.querySelector('main');
 
@@ -102,9 +100,9 @@ export let render = {
     /**
      * No data found html renderer
      */
-    noData: function () {
+    noDataFound: function () {
         const html = `
-        <div><span>Oeps! Het ziet er naar uit dat deze schilder niet bestaat. Check voor de zekerheid of je de naam goed gesachreven hebt.</span></div>
+        <div class="no-data"><span>Oeps! Het ziet er naar uit dat deze schilder niet bestaat. Check voor de zekerheid of je de naam goed gesachreven hebt.</span></div>
     `;
 
         objects.insertAdjacentHTML('beforeend', html);
