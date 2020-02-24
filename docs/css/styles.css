@@ -222,3 +222,19 @@ section > .object {
 
     color: var(--light);
 }
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 50vh;
+
+    color: var(--light);
+}
+
+.loading img {
+    width: 10vw;
+}

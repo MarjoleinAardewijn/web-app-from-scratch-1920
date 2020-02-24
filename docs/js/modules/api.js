@@ -1,5 +1,4 @@
 import {render} from "./render.js";
-import {data as dataModule} from "./data.js";
 
 const endpoint = 'https://www.rijksmuseum.nl/api/nl/collection',
     apiKey = 'n0Iu86hl';

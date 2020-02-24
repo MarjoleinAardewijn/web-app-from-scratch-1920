@@ -2,6 +2,12 @@ const objects = document.querySelector('.objects'),
     main = document.querySelector('main');
 
 export const render = {
+    loader: function (element) {
+        let elementId = document.getElementById(element);
+        let loadingImage = '<div class="loading"><img src="./img/loading.gif" alt="loading"><p>Loading...</p></div>';
+        elementId.insertAdjacentHTML("beforeend", loadingImage);
+    },
+
     /**
      * Function to render the overview of all the paintings
      *
@@ -106,6 +112,19 @@ export const render = {
     `;
 
         objects.insertAdjacentHTML('beforeend', html);
+    },
+
+    /**
+     * Function to remove all the content inside a div.
+     *
+     * @param elementId: the ID of the div that you want to clear.
+     */
+    remove: function (elementId) {
+        let div = document.getElementById(elementId);
+
+        while(div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
     }
 
 };
