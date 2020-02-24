@@ -318,3 +318,6 @@ The sources I used the most during the development of the app are:
   - [Regex](https://stackoverflow.com/questions/441018/replacing-spaces-with-underscores-in-javascript).
 - [Clear DIV](https://www.geeksforgeeks.org/how-to-clear-the-content-of-a-div-using-javascript/).
 - [README](https://github.com/RooyyDoe/web-app-from-scratch-1920).
+
+## Licence
+
