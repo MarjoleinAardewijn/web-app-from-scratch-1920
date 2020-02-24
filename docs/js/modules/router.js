@@ -3,17 +3,21 @@ import {render} from "./render.js";
 
 export const router = {
     handler: async function() {
-
         const artist = 'Aelbert+Cuyp';
 
         render.loader('objects');
         const paintings = await api.getData(artist);
         render.remove('objects');
-        paintings.map(item => {
-            render.overview(item);
-            render.details(item);
-        });
-        this.route();
+        // console.log(paintings);
+        if (paintings.length !== 0) {
+            paintings.map(item => {
+                render.overview(item);
+                render.details(item);
+            });
+            this.route();
+        } else {
+            render.noDataFound();
+        }
     },
 
     route: function() {
