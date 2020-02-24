@@ -4,11 +4,11 @@
 
 ## Table of Contents
 
-* [To Do](#t=To-do-)
-* [Live Demo](#Live-demo-)
-* [Description](#Description-)
+* [To Do](#To-do)
+* [Live Demo](#Live-demo)
+* [Description](#Description)
 * [Usage](#Usage)
-* [API](#Api-)
+* [API](#Api)
 * [How It Works](#How-it-works)
   * [Actor Diagram](#Actor-diagram)
   * [Interaction Diagram](#Interaction-diagram)
@@ -23,8 +23,11 @@
 - [x] route to details page.
 - [x] transform hex values to real colors.
 - [x] refactor code to modules.
-- [ ] add handle to router module.
-- [ ] refactor fetch to async/await.
+- [x] add handle to router module.
+- [x] refactor fetch to async/await.
+- [x] implement map.
+- [ ] implement filter and reduce.
+- [ ] implement LocalStorage.
 - [ ] search painting from a specific artist.
 - [ ] arrows for scrolling with a nice fade on both sides.
 - [x] styling.
@@ -44,10 +47,17 @@ Information about all the paintings can be viewed, such as:
 
 ## Usage
 
-Clone the repository
+Go via the terminal to the folder you want the project to be placed:
+
+```
+    cd Path/To/Folder
+```
+
+Clone the repository:
 
 ```
     git clone https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920.git
+    cd web-app-from-scratch-1920
 ```
 
 After cloning the repository load the `index.html` file in your localhost.
@@ -298,6 +308,7 @@ The sources I used the most during the development of the app are:
 - [Rijksmuseum API Documentation](https://data.rijksmuseum.nl/object-metadata/api/).
 - [Tutorial republic](https://www.tutorialrepublic.com/).
 - [W3Schools](https://www.w3schools.com/).
+- [Medium](https://medium.com/poka-techblog/).
 
 ## Credits
 
