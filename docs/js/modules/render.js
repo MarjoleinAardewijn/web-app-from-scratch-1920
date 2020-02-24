@@ -1,7 +1,7 @@
 const objects = document.querySelector('.objects'),
     main = document.querySelector('main');
 
-export let render = {
+export const render = {
     /**
      * Function to render the overview of all the paintings
      *
@@ -9,7 +9,7 @@ export let render = {
      */
     overview: function (data) {
         const html = `
-            <a href="#${data.objectNumber}" class="link">
+            <a href="#${data.objectNumber}" data-route="${data.objectNumber}" class="link">
                 <div class="object">
                     <img src="${data.webImage.url}">
                     <div class="title">
