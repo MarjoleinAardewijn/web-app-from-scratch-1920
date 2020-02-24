@@ -4,7 +4,7 @@ const objects = document.querySelector('.objects'),
 export const render = {
     loader: function (element) {
         let elementId = document.getElementById(element);
-        let loadingImage = '<img src="/docs/img/loading.png" alt="loading">';
+        let loadingImage = '<div class="loading"><img src="./img/loading.gif" alt="loading"><p>Loading...</p></div>';
         elementId.insertAdjacentHTML("beforeend", loadingImage);
     },
 

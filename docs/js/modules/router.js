@@ -17,9 +17,11 @@ export const router = {
     },
 
     route: function() {
-        routie(':objectNumber', objectNumber => {
-            this.updateUI(objectNumber);
-        });
+        routie(
+            ':objectNumber', objectNumber => {
+                this.updateUI(objectNumber);
+            }
+        );
     },
 
     /**
