@@ -29,18 +29,5 @@ export const search = {
         let artist = temp.trim();
         // replace all spaces with '+' in string and return the value
         return artist.replace(/[\s]/g, "+");
-    },
-
-    /**
-     * Function to remove all the content inside a div.
-     *
-     * @param elementId: the ID of the div that you want to clear.
-     */
-    remove: function (elementId) {
-        let div = document.getElementById(elementId);
-
-        while(div.firstChild) {
-            div.removeChild(div.firstChild);
-        }
     }
 };

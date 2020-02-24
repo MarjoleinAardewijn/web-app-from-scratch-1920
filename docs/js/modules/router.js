@@ -1,14 +1,14 @@
-import {search} from "./search.js";
 import {api} from "./api.js";
 import {render} from "./render.js";
 
 export const router = {
     handler: async function() {
+
         const artist = 'Aelbert+Cuyp';
 
-        console.log('details');
-        search.remove('objects');
+        render.loader('objects');
         const paintings = await api.getData(artist);
+        render.remove('objects');
         paintings.map(item => {
             render.overview(item);
             render.details(item);
