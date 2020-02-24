@@ -105,7 +105,7 @@ input {
     border-radius: 4px;
 }
 
-.link:focus .object .title .title-name {
+.link.active .object .title .title-name {
     color: var(--orange);
 }
 

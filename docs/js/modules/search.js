@@ -1,6 +1,21 @@
 import {api} from "./api.js";
 
-export let search = {
+export const search = {
+    /**
+     * Search for paintings from a specific artist
+     */
+    paintings: function () {
+        if (this.getUserInput()) {
+            this.remove('objects');
+            const artist = this.getUserInput();
+            api.getData(artist);
+        } else {
+            this.remove('objects');
+            const artist = 'Aelbert+Cuyp';
+            api.getData(artist);
+        }
+    },
+
     /**
      * Function to get the user input.
      */
@@ -14,21 +29,6 @@ export let search = {
         let artist = temp.trim();
         // replace all spaces with '+' in string and return the value
         return artist.replace(/[\s]/g, "+");
-    },
-
-    /**
-     * Function to search for other painters
-     */
-    paintings: function () {
-        if(this.getUserInput()){
-            // todo: remove all content in div.objects
-            this.clear('objects');
-            // todo: reset fetch
-            // todo: fetch again
-        } else {
-            const artist = 'Aelbert+Cuyp';
-            api.overview(artist);
-        }
     },
 
     /**
