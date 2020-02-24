@@ -1,3 +1,4 @@
+// Todo: implement localStorage in app.
 export const data = {
     get: function (key) {
         return localStorage.getItem(key);
