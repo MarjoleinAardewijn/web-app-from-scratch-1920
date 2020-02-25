@@ -37,7 +37,7 @@ Information about all the paintings can be viewed, such as:
 - [x] implement LocalStorage.
 - [x] styling.
 - [x] search painting from a specific artist.
-- [ ] arrows for scrolling with a nice fade on both sides.
+- [x] Loading.
 
 ## Live Demo
 
@@ -297,6 +297,10 @@ This will be returning the following data:
 ![Interaction Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/interaction-diagram-WAFS-1920.png "Interaction Diagram")
 
 ## Feature Wishlist / Backlog
+
+In the future I would like to add:
+
+- [ ] arrows for scrolling with a nice fade on both sides.
 
 ## Sources
 
