@@ -12,7 +12,6 @@ Information about all the paintings can be viewed, such as:
 
 ## Table of Contents
 
-* [Description](#Description)
 * [To Do](#To-do)
 * [Live Demo](#Live-demo)
 * [Usage](#Usage)
@@ -322,3 +321,7 @@ The sources I used the most during the development of the app are:
 - [LocalStorage](https://www.taniarascia.com/how-to-use-local-storage-with-javascript/).
 
 ## Licence
+
+[MIT License](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/LICENSE.txt) 
+
+Copyright (c) 2020 Marjolein Aardewijn
