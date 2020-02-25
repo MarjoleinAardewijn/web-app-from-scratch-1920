@@ -302,6 +302,7 @@ This will be returning the following data:
 In the future I would like to add:
 
 - [ ] arrows for scrolling with a nice fade on both sides.
+- [ ] responsive design.
 
 ## Sources
 
