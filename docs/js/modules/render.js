@@ -5,10 +5,10 @@ export const render = {
     /**
      * Function to render the loading image.
      *
-     * @param element
+     * @param elementId
      */
-    loader: function (element) {
-        const elementId = document.getElementById(element),
+    loader: function (elementId) {
+        const element = document.getElementById(elementId),
             loadingImage = `
                 <div class="loading">
                     <img src="./img/loading.gif" alt="loading">
@@ -16,7 +16,7 @@ export const render = {
                 </div>
             `;
 
-        elementId.insertAdjacentHTML("beforeend", loadingImage);
+        element.insertAdjacentHTML("beforeend", loadingImage);
     },
 
     /**

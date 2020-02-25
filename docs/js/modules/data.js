@@ -21,8 +21,8 @@ export const data = {
     /**
      * Function to convert the contents of localStorage back into something we can work with.
      */
-    parse: function (object) {
-        return JSON.parse(object);
+    parse: function (item) {
+        return JSON.parse(item);
     },
 
     /**
