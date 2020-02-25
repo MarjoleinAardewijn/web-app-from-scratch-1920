@@ -1,16 +1,52 @@
+import {data as dataModule} from "./data.js";
 import {api} from "./api.js";
 import {render} from "./render.js";
 
 export const router = {
-    handler: async function() {
-        const artist = 'Aelbert+Cuyp';
 
+    /**
+     * Function to get all the data depending if localStorage is set or not.
+     */
+    handler: function() {
+        if(localStorage.length === 0){
+            const artist = 'Rembrandt+van+Rijn';
+            this.getPaintings(artist);
+        } else {
+            this.getPaintingsFromLocalStorage();
+        }
+    },
+
+    /**
+     * Function to get all the data.
+     *
+     * @param artist
+     */
+    getPaintings: async function (artist) {
         render.loader('objects');
         const paintings = await api.getData(artist);
         render.remove('objects');
-        // console.log(paintings);
-        if (paintings.length !== 0) {
-            paintings.map(item => {
+        this.getContent(paintings);
+    },
+
+    /**
+     * Function to get all the data from localStorage.
+     */
+    getPaintingsFromLocalStorage: function () {
+        render.loader('objects');
+        let paintings = dataModule.getItem('details');
+        let parsedPaintings = dataModule.parse(paintings);
+        render.remove('objects');
+        this.getContent(parsedPaintings);
+    },
+
+    /**
+     * Function to render the content.
+     *
+     * @param data
+     */
+    getContent: function (data) {
+        if (data.length !== 0) {
+            data.map(item => {
                 render.overview(item);
                 render.details(item);
             });
@@ -20,10 +56,20 @@ export const router = {
         }
     },
 
+    /**
+     * Function to remove the id from the hash.
+     */
+    removeIdFromHash: function () {
+        window.location.replace("#");
+    },
+
+    /**
+     * Function to update the hash depending on which painting is clicked, using Routie.
+     */
     route: function() {
         routie(
-            ':objectNumber', objectNumber => {
-                this.updateUI(objectNumber);
+            ':id', id => {
+                this.updateUI(id);
             }
         );
     },
@@ -35,14 +81,12 @@ export const router = {
      * @param route
      */
     updateUI: function (route) {
-        if(document.querySelector('section[data-route].active') && document.querySelector('a[data-route].active')){
-            document.querySelector('section[data-route].active').classList.remove('active');
+        if(document.querySelector('div[data-route].active') && document.querySelector('a[data-route].active')){
+            document.querySelector('div[data-route].active').classList.remove('active');
             document.querySelector('a[data-route].active').classList.remove('active');
         }
-        let activeSectionTest = document.querySelector(`section`);
-        let activeSection = document.querySelector(`section[data-route=${route}]`);
+        let activeSection = document.querySelector(`div[data-route=${route}]`);
         let activeLink = document.querySelector(`a[data-route=${route}]`);
-        console.log(activeSectionTest);
         activeSection.classList.add('active');
         activeLink.classList.add('active');
     }

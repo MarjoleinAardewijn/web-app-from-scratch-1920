@@ -1,15 +1,17 @@
+import {data as dataModule} from "./data.js";
+
 const endpoint = 'https://www.rijksmuseum.nl/api/nl/collection',
     apiKey = 'n0Iu86hl';
 
 export const api = {
     /**
-     * Async function to fetch all the paintings from a specific painter and the details of every painting.
+     * Async function to fetch all the paintings from a specific painter and the details
+     * of every painting.
      *
      * @param artist: the artist where you want to see some paintings from.
      */
     getData: async function(artist) {
-        const painter = artist,
-            urlArtist = `${endpoint}?key=${apiKey}&involvedMaker=${painter}`;
+        const urlArtist = `${endpoint}?key=${apiKey}&involvedMaker=${artist}`;
 
         try {
             /**
@@ -20,20 +22,32 @@ export const api = {
             const response = await fetch(urlArtist);
             const jsonData = await response.json();
             const objects = jsonData.artObjects;
-            // Todo: add filter/reduce
-            // Loop through the paintings to get the details of every painting
-            const details = objects.map(async function(object) {
+
+            // Check if paintings are from the artist (filter) and loop through the paintings
+            // to get the details of every painting (map).
+            const details = objects.filter(async function (object) {
+                return object.principalOrFirstMaker === artist;
+            }).map(async function(object) {
                 const urlDetails = `${endpoint}/${object.objectNumber}?key=${apiKey}`;
 
-                // Fetch details
-                const responseDetails = await fetch(urlDetails);
-                const jsonDataDetails = await responseDetails.json();
-                return jsonDataDetails.artObject;
+                try {
+                    // Fetch details
+                    const response = await fetch(urlDetails);
+                    const jsonData = await response.json();
+                    // filter data
+                    const filteredData = await dataModule.filter(jsonData.artObject);
+                    return await filteredData[0];
+                } catch (err) {
+                    console.log('Error: ', err);
+                }
             });
-            console.log(await Promise.all(details));
 
-            // wait until all the data from the details is fetched
-            return await Promise.all(details);
+            // wait until all the data from the details is fetched.
+            let allData = await Promise.all(details);
+            // store all the data in the localStorage.
+            await dataModule.setItem('details', allData);
+            // return fetched data.
+            return await allData;
         } catch (err) {
             console.log('Error: ', err);
         }

@@ -2,11 +2,19 @@
 
 ![App](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/rijksmuseum-schilders-app.png "Rijksmuseum Schilders App")
 
+## Description
+
+With this app the user can view all the paintings by a certain artist that are in the collection of the Rijksmuseum.
+Information about all the paintings can be viewed, such as:
+- Name;
+- Year it was presented by the artist himself;
+- Colors that have been used in a painting.
+
 ## Table of Contents
 
+* [Description](#Description)
 * [To Do](#To-do)
 * [Live Demo](#Live-demo)
-* [Description](#Description)
 * [Usage](#Usage)
 * [API](#Api)
 * [How It Works](#How-it-works)
@@ -26,24 +34,16 @@
 - [x] add handle to router module.
 - [x] refactor fetch to async/await.
 - [x] implement map.
-- [ ] implement filter and reduce.
-- [ ] implement LocalStorage.
-- [ ] search painting from a specific artist.
-- [ ] arrows for scrolling with a nice fade on both sides.
+- [x] implement filter and/or reduce.
+- [x] implement LocalStorage.
 - [x] styling.
+- [x] search painting from a specific artist.
+- [ ] arrows for scrolling with a nice fade on both sides.
 
 ## Live Demo
 
 The live demo of the app can be found here:
 [Live Demo Link](https://marjoleinaardewijn.github.io/web-app-from-scratch-1920/)
-
-## Description
-
-With this app the user can view all the paintings by a certain artist that are in the collection of the Rijksmuseum.
-Information about all the paintings can be viewed, such as:
-- Name;
-- Year it was presented by the artist himself;
-- Colors that have been used in a painting.
 
 ## Usage
 
@@ -291,7 +291,7 @@ This will be returning the following data:
 ## How it works
 ### Actor diagram
 
-![Actor Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/actor-diagram-WAFS-1920-v3.png "Actor Diagram")
+![Actor Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/actor-diagram-WAFS-1920.png "Actor Diagram")
 
 ### Interaction diagram
 
@@ -309,6 +309,7 @@ The sources I used the most during the development of the app are:
 - [Tutorial republic](https://www.tutorialrepublic.com/).
 - [W3Schools](https://www.w3schools.com/).
 - [Medium](https://medium.com/poka-techblog/).
+- [Tania Rascia](https://www.taniarascia.com/).
 
 ## Credits
 
@@ -318,6 +319,6 @@ The sources I used the most during the development of the app are:
   - [Regex](https://stackoverflow.com/questions/441018/replacing-spaces-with-underscores-in-javascript).
 - [Clear DIV](https://www.geeksforgeeks.org/how-to-clear-the-content-of-a-div-using-javascript/).
 - [README](https://github.com/RooyyDoe/web-app-from-scratch-1920).
+- [LocalStorage](https://www.taniarascia.com/how-to-use-local-storage-with-javascript/).
 
 ## Licence
-
