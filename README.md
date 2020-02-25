@@ -297,7 +297,7 @@ This will be returning the following data:
 
 ![Interaction Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/interaction-diagram-WAFS-1920.png "Interaction Diagram")
 
-## Feature Wishlist / Backlog
+## Feature Wishlist
 
 In the future I would like to add:
 
