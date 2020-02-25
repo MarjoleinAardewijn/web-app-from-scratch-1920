@@ -19,7 +19,7 @@ Information about all the paintings can be viewed, such as:
 * [How It Works](#How-it-works)
   * [Actor Diagram](#Actor-diagram)
   * [Interaction Diagram](#Interaction-diagram)
-* [Feature Wishlist / Backlog](#Feature-Wishlist-/-Backlog)
+* [Feature Wishlist](#Feature-Wishlist)
 * [Sources](#Sources)
 * [Credits](#Credits)
 * [Licence](#Licence)
