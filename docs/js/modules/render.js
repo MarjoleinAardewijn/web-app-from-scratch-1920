@@ -1,23 +1,34 @@
 const objects = document.querySelector('.objects'),
-    main = document.querySelector('main');
+    details = document.querySelector('section');
 
 export const render = {
+    /**
+     * Function to render the loading image.
+     *
+     * @param element
+     */
     loader: function (element) {
-        let elementId = document.getElementById(element);
-        let loadingImage = '<div class="loading"><img src="./img/loading.gif" alt="loading"><p>Loading...</p></div>';
+        const elementId = document.getElementById(element),
+            loadingImage = `
+                <div class="loading">
+                    <img src="./img/loading.gif" alt="loading">
+                    <p>Loading...</p>
+                </div>
+            `;
+
         elementId.insertAdjacentHTML("beforeend", loadingImage);
     },
 
     /**
-     * Function to render the overview of all the paintings
+     * Function to render the overview of all the paintings.
      *
      * @param data
      */
     overview: function (data) {
         const html = `
-            <a href="#${data.objectNumber}" data-route="${data.objectNumber}" class="link">
+            <a href="#${data.id}" data-route="${data.id}" class="link">
                 <div class="object">
-                    <img src="${data.webImage.url}">
+                    <img src="${data.imgUrl}">
                     <div class="title">
                         <h3 class="title-name">${data.title}</h3>
                     </div>
@@ -49,32 +60,32 @@ export const render = {
      */
     detailsWithColors: function (data) {
         const html = `
-        <section data-route="${data.objectNumber}">
-            <div class="object">
-                <div class="title">
-                    <h3 class="title-name">${data.title}</h3>
-                    <span class="title-objectnumber">${data.objectNumber}</span>
-                </div>
-                <div class="presenting-date">
-                    <span>Year the painting was presented: <span class="date">${data.dating.presentingDate}</span></span>
-                </div>
-                <div class="colors"> 
-                    <span>Colors:</span>
-                     <ul>
-                        <!--
-                            loop through the colors in the array and place them in a li tag
-                            used .join('') on the map to remove apostrophe
-                        -->
-                        ${data.colors.map(colors => {
-                            return `<li class="hex-color" style="background-color: ${colors.hex}">${colors.hex}</li>`
-                        }).join('')}
-                     </ul>
+            <div data-route="${data.id}">
+                <div class="object">
+                    <div class="title">
+                        <h3 class="title-name">${data.title}</h3>
+                        <span class="title-objectnumber">${data.id}</span>
+                    </div>
+                    <div class="presenting-date">
+                        <span>Year the painting was presented: <span class="date">${data.presentingDate}</span></span>
+                    </div>
+                    <div class="colors"> 
+                        <span>Colors:</span>
+                         <ul>
+                            <!--
+                                loop through the colors in the array and place them in a li tag
+                                used .join('') on the map to remove apostrophe
+                            -->
+                            ${data.colors.map(colors => {
+                                return `<li class="hex-color" style="background-color: ${colors.hex}">${colors.hex}</li>`
+                            }).join('')}
+                         </ul>
+                    </div>
                 </div>
             </div>
-        </section>
-    `;
+        `;
 
-        main.insertAdjacentHTML('afterend', html);
+        details.insertAdjacentHTML('beforeend', html);
     },
 
     /**
@@ -84,32 +95,32 @@ export const render = {
      */
     detailsNoColors: function (data) {
         const html = `
-            <section data-route="${data.objectNumber}">
+            <div data-route="${data.id}">
                 <div class="object">
                     <div class="title">
                         <h3 class="title-name">${data.title}</h3>
-                        <span class="title-objectnumber">${data.objectNumber}</span>
+                        <span class="title-objectnumber">${data.id}</span>
                     </div>
                     <div class="presenting-date">
-                        <span>Year the painting was presented: <span class="date">${data.dating.presentingDate}</span></span>
+                        <span>Year the painting was presented: <span class="date">${data.presentingDate}</span></span>
                     </div>
                     <div class="colors">
                         <span>Colors: </span><span class="not-defined">not defined</span>
                     </div>
                 </div>
-            </section>
+            </div>
         `;
 
-        main.insertAdjacentHTML('afterend', html);
+        details.insertAdjacentHTML('beforeend', html);
     },
 
     /**
-     * No data found html renderer
+     * No data found html renderer.
      */
     noDataFound: function () {
         const html = `
-        <div class="no-data"><span>Oeps! Het ziet er naar uit dat deze schilder niet bestaat. Check voor de zekerheid of je de naam goed gesachreven hebt.</span></div>
-    `;
+            <div class="no-data"><span>Oeps! Het ziet er naar uit dat deze schilder niet bestaat. Check voor de zekerheid of je de naam goed gesachreven hebt.</span></div>
+        `;
 
         objects.insertAdjacentHTML('beforeend', html);
     },
