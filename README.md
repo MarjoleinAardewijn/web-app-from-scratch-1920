@@ -12,7 +12,6 @@ Information about all the paintings can be viewed, such as:
 
 ## Table of Contents
 
-* [Description](#Description)
 * [To Do](#To-do)
 * [Live Demo](#Live-demo)
 * [Usage](#Usage)
@@ -20,6 +19,7 @@ Information about all the paintings can be viewed, such as:
 * [How It Works](#How-it-works)
   * [Actor Diagram](#Actor-diagram)
   * [Interaction Diagram](#Interaction-diagram)
+* [Feature Wishlist](#Feature-Wishlist)
 * [Sources](#Sources)
 * [Credits](#Credits)
 * [Licence](#Licence)
@@ -38,7 +38,7 @@ Information about all the paintings can be viewed, such as:
 - [x] implement LocalStorage.
 - [x] styling.
 - [x] search painting from a specific artist.
-- [ ] arrows for scrolling with a nice fade on both sides.
+- [x] Loading.
 
 ## Live Demo
 
@@ -297,12 +297,17 @@ This will be returning the following data:
 
 ![Interaction Diagram](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/images/interaction-diagram-WAFS-1920.png "Interaction Diagram")
 
-## Feature Wishlist / Backlog
+## Feature Wishlist
+
+In the future I would like to add:
+
+- [ ] arrows for scrolling with a nice fade on both sides.
+- [ ] responsive design.
 
 ## Sources
 
 The sources I used the most during the development of the app are:
-- [Mozilla Developer Network](https://developer.mozilla.org/nl/docs/Web/JavaScript).
+- [Mozilla Developer Network (MDN)](https://developer.mozilla.org/nl/docs/Web/JavaScript).
 - [Stackoverflow](https://stackoverflow.com/).
 - [Geeks for geeks](https://www.geeksforgeeks.org/).
 - [Rijksmuseum API Documentation](https://data.rijksmuseum.nl/object-metadata/api/).
@@ -310,6 +315,7 @@ The sources I used the most during the development of the app are:
 - [W3Schools](https://www.w3schools.com/).
 - [Medium](https://medium.com/poka-techblog/).
 - [Tania Rascia](https://www.taniarascia.com/).
+- [Dev](https://dev.to).
 
 ## Credits
 
@@ -319,6 +325,17 @@ The sources I used the most during the development of the app are:
   - [Regex](https://stackoverflow.com/questions/441018/replacing-spaces-with-underscores-in-javascript).
 - [Clear DIV](https://www.geeksforgeeks.org/how-to-clear-the-content-of-a-div-using-javascript/).
 - [README](https://github.com/RooyyDoe/web-app-from-scratch-1920).
-- [LocalStorage](https://www.taniarascia.com/how-to-use-local-storage-with-javascript/).
+- [Repository van Robin Stut](https://github.com/RobinStut/web-app-from-scratch-18-19):
+  - Loader.
+- Async Await:
+  - [Dev](https://dev.to/johnpaulada/synchronous-fetch-with-asyncawait).
+  - [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+- LocalStorage:
+  - [tutorialrepublic](https://www.tutorialrepublic.com/faq/how-to-store-javascript-objects-in-html5-localstorage.php).
+  - [Tania Rascia](https://www.taniarascia.com/how-to-use-local-storage-with-javascript/).
 
 ## Licence
+
+[MIT License](https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920/blob/master/LICENSE.txt) 
+
+Copyright (c) 2020 Marjolein Aardewijn
