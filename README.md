@@ -307,7 +307,7 @@ In the future I would like to add:
 ## Sources
 
 The sources I used the most during the development of the app are:
-- [Mozilla Developer Network](https://developer.mozilla.org/nl/docs/Web/JavaScript).
+- [Mozilla Developer Network (MDN)](https://developer.mozilla.org/nl/docs/Web/JavaScript).
 - [Stackoverflow](https://stackoverflow.com/).
 - [Geeks for geeks](https://www.geeksforgeeks.org/).
 - [Rijksmuseum API Documentation](https://data.rijksmuseum.nl/object-metadata/api/).
@@ -315,6 +315,7 @@ The sources I used the most during the development of the app are:
 - [W3Schools](https://www.w3schools.com/).
 - [Medium](https://medium.com/poka-techblog/).
 - [Tania Rascia](https://www.taniarascia.com/).
+- [Dev](https://dev.to).
 
 ## Credits
 
@@ -324,7 +325,14 @@ The sources I used the most during the development of the app are:
   - [Regex](https://stackoverflow.com/questions/441018/replacing-spaces-with-underscores-in-javascript).
 - [Clear DIV](https://www.geeksforgeeks.org/how-to-clear-the-content-of-a-div-using-javascript/).
 - [README](https://github.com/RooyyDoe/web-app-from-scratch-1920).
-- [LocalStorage](https://www.taniarascia.com/how-to-use-local-storage-with-javascript/).
+- [Repository van Robin Stut](https://github.com/RobinStut/web-app-from-scratch-18-19):
+  - Loader.
+- Async Await:
+  - [Dev](https://dev.to/johnpaulada/synchronous-fetch-with-asyncawait).
+  - [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+- LocalStorage:
+  - [tutorialrepublic](https://www.tutorialrepublic.com/faq/how-to-store-javascript-objects-in-html5-localstorage.php).
+  - [Tania Rascia](https://www.taniarascia.com/how-to-use-local-storage-with-javascript/).
 
 ## Licence
 
