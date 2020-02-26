@@ -131,7 +131,7 @@ export const render = {
      * @param elementId: the ID of the div that you want to clear.
      */
     remove: function (elementId) {
-        let div = document.getElementById(elementId);
+        const div = document.getElementById(elementId);
 
         while(div.firstChild) {
             div.removeChild(div.firstChild);
