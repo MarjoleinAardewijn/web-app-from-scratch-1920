@@ -10,6 +10,8 @@ Information about all the paintings can be viewed, such as:
 - Year it was presented by the artist himself;
 - Colors that have been used in a painting.
 
+In this file you can see how the app works, how to install it, what I would like to implement in the future and which resources I used during development.
+
 ## Table of Contents
 
 * [To Do](#To-do)
@@ -53,14 +55,13 @@ Go via the terminal to the folder you want the project to be placed:
     cd Path/To/Folder
 ```
 
-Clone the repository:
+Clone the repository and go to the project folder:
 
 ```
-    git clone https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920.git
-    cd web-app-from-scratch-1920
+    git clone https://github.com/MarjoleinAardewijn/web-app-from-scratch-1920.git && cd web-app-from-scratch-1920
 ```
 
-After cloning the repository load the `index.html` file in your localhost.
+After cloning the repository start your local server and run your `index.html` file.
 
 ## API
 
@@ -301,6 +302,9 @@ This will be returning the following data:
 
 In the future I would like to add:
 
+- [ ] possibility to close the detail cards 
+- [ ] showing the details on a "new page" **or** showing the details in a modal.
+- [ ] showing (even) more details about the paintings.
 - [ ] arrows for scrolling with a nice fade on both sides.
 - [ ] responsive design.
 
