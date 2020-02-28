@@ -114,7 +114,7 @@ input {
     margin-bottom: 0.5rem;
 }
 
-.details > .object .title .title-name {
+.details div.active .object .title .title-name {
     font-size: 1.5em;
     color: var(--orange);
 }
@@ -124,16 +124,16 @@ input {
     max-width: 40vw;
 }
 
-section > div {
+.details > div {
     display: none;
 }
 
-section > div.active{
+.details > div.active{
     display: flex;
     justify-content: center;
 }
 
-section > div > .object {
+.details > div > .object {
     background-color: var(--light);
 
     display: flex;
